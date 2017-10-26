@@ -6,6 +6,7 @@ import { Locate } from './service/modelo';
 import 'rxjs/add/operator/map';
 import { FirebaseListObservable } from 'angularfire2/database-deprecated'
 import { element } from 'protractor';
+import { AgmCoreModule } from '@agm/core';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
   lat: number;
   lng: number;
   res: any[];
+  private obj;
   getLatLng: Observable<any>;
 
   constructor(private geo: GeoService, public af: AngularFireDatabase) {
@@ -33,6 +35,9 @@ export class AppComponent implements OnInit {
     ).then((t: any) => console.log('dados gravados: ' + t.key))
     this.getMyLat();
 
+    this.obj = {
+      zoom: 30
+    }
   }
 
   getMyLat() {

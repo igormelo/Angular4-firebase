@@ -1,9 +1,7 @@
 <h1>{{ title }}</h1>
 
-<!-- this creates a google map on the page with the given lat/lng from -->
-<!-- the component as the initial center of the map: -->
-<agm-map [latitude]="this.lat" [longitude]="this.lng" [zoom]="10">
-  <agm-marker [latitude]="this.lat" [longitude]="this.lng"></agm-marker>
-</agm-map>
-<button type="submit" (click)="getMyLat()">GET LOCATE</button>
-<p *ngFor="let l of getLatLng| async">{{l.lat}}</p>
+<sebm-google-map [latitude]="this.lat" [longitude]="this.lng" [zoom]="this.obj.zoom">
+  <sebm-google-map-marker [latitude]="this.lat" [longitude]="this.lng" iconUrl="https://d30y9cdsu7xlg0.cloudfront.net/png/5551-200.png"></sebm-google-map-marker>
+</sebm-google-map>
+<button type="submit " (click)="getMyLat() ">GET LOCATE</button>
+<p *ngFor="let l of getLatLng| async ">{{l.lat}}</p>
