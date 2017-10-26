@@ -11,7 +11,7 @@ export class GeoService {
 
 
     getLocation(): Observable<any> {
-        return this.http.get('https://testez-fbf7b.firebaseio.com/sendLatLng.json').map(result => result.json());
+        return this.http.get('https://testez-fbf7b.firebaseio.com/sendLatLng.json');
     }
     setLocation(): Observable<any> {
         return;
