@@ -1,6 +1,4 @@
-<h1>{{ title }}</h1>
-
-<sebm-google-map [latitude]="this.lat" [longitude]="this.lng">
-  <sebm-google-map-marker [latitude]="this.lat" [longitude]="this.lng"></sebm-google-map-marker>
+<sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="20">
+  <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
 </sebm-google-map>
-<p *ngFor="let l of getLatLng| async ">{{l.lat}}</p>
+<button type="submit" (click)="getLocation()">ENVIAR </button>
