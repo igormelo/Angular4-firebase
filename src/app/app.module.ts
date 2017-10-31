@@ -17,7 +17,7 @@ import { firebaseconfig } from '../environments/firebaseconfig';
   imports: [
     BrowserModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseconfig, 'mylocation'),
+    AngularFireModule.initializeApp(firebaseconfig),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB-wUaUTgO5jQWJOMpG2kDq5W1t4tG1ZmQ'
     })

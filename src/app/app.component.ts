@@ -1,12 +1,13 @@
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { GeoService } from './service/geo.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Locate } from './service/modelo';
 import 'rxjs/add/operator/map';
 import { FirebaseListObservable } from 'angularfire2/database-deprecated'
 import { element } from 'protractor';
 import { AgmCoreModule } from '@agm/core';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -27,17 +28,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.af.list('myLatLng').push({
-      lat: -22.715459,
-      lng: -43.555167
-
-    }
-    ).then((t: any) => console.log('dados gravados: ' + t.key))
-    this.getMyLat();
-
-    this.obj = {
-      zoom: 30
-    }
+    this.getUserLocation()
   }
 
   getMyLat() {
@@ -46,5 +37,18 @@ export class AppComponent implements OnInit {
       this.lat = this.res[0].lat;
       this.lng = this.res[0].lng;
     });
+  }
+  getUserLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+        this.af.list('myLatLng').push({
+          lat: this.lat,
+          lng: this.lng
+        })
+      })
+    }
+
   }
 }
