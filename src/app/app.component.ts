@@ -16,31 +16,31 @@ import * as firebase from 'firebase';
 export class AppComponent implements OnInit {
   lat: number;
   lng: number;
-  res: any[];
-  listing: any;
+  res: any = {};
   constructor(public af: AngularFireDatabase) {
 
   }
 
   ngOnInit() {
-    this.myLoc();
+    this.getLocation();
+    this.myLocation();
   }
 
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        this.af.list('myLatLng').push({
+        this.af.object('myLatLng').update({
           lat: position.coords.latitude,
           lng: position.coords.longitude
         })
       })
     }
   }
-  myLoc() {
-    const item = this.af.list('myLatLng').valueChanges().subscribe(res => {
+  myLocation() {
+    this.af.object('myLatLng').valueChanges().subscribe(res => {
       this.res = res;
-      this.lat = this.res[1].lat;
-      this.lng = this.res[1].lng;
+      this.lat = this.res.lat
+      this.lng = this.res.lng;
     });
   }
 }

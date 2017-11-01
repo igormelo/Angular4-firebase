@@ -1,4 +1,4 @@
 <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="20">
-  <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+  <sebm-google-map-marker [latitude]="lat" [longitude]="lng" (markerclick)="update()"></sebm-google-map-marker>
 </sebm-google-map>
 <button type="submit" (click)="getLocation()">ENVIAR </button>
